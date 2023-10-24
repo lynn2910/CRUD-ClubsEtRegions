@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap');
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #D0E7D2;
+  color: #000;
+  font-family: 'League Spartan', sans-serif;
+}
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 50px;
+  background: #B0D9B1;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: row;
+  user-select: none;
+}
+nav img {
+  height: 45px;
+  width: auto;
+  margin: auto 0;
+}
+nav .right {
+  margin: 0 100px 0 auto;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+nav .right a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 700;
+  margin: auto 10px;
+}
+nav .right a:hover {
+  color: #618264;
+}
+main {
+  padding: 65px 15px 15px 15px;
+  height: calc(100% - 50px - 30px);
+  width: calc(100% - 30px);
+}
+.container {
+  margin: 10px;
+  padding: 15px;
+  background-color: #B0D9B1;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+button,
+.btn {
+  margin: 10px;
+  padding: 15px 20px;
+  background-color: #000;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 10px;
+  border: none;
+  transition: 0.15s ease-in-out;
+  cursor: pointer;
+  user-select: none;
+}
+button:hover,
+.btn:hover {
+  padding: 17px 22px;
+  margin: 8px;
+  transition: 0.15s ease-in-out;
+}
+table {
+  margin: 25px 10px 10px 10px;
+  max-width: calc(100% - 20px);
+  border-collapse: collapse;
+}
+thead,
+tbody {
+  border: 1px solid #000;
+}
+td,
+th {
+  text-align: left;
+  padding: 10px 20px;
+  font-weight: 400;
+}
+th[scope=row] {
+  font-weight: 700;
+}
+th.actions {
+  height: 40px;
+  width: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: right;
+}
+th.actions a {
+  margin: 0 5px;
+  cursor: pointer;
+}
+th.actions a svg {
+  height: 20px;
+  margin: 2px;
+}
+th.actions a svg:hover {
+  margin: 0;
+  height: 24px;
+}
+tbody tr:nth-child(even) {
+  background: #D0E7D2;
+}
+tbody tr:nth-child(odd) {
+  background: #c8decb;
+}
+input[type=text] {
+  border: 2px solid #79AC78;
+  border-radius: 7px;
+  margin: 5px;
+  padding: 10px 20px;
+  background: #79AC78;
+  color: #000;
+  outline: none;
+}
+input[type=text]:focus,
+input[type=text]:hover {
+  border: 2px solid #618264;
+}
+input[type=text]::placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+form fieldset {
+  width: 95%;
+}
+form button,
+form .btn {
+  margin: 10px;
+  padding: 10px 25px;
+}
+form button:hover,
+form .btn:hover {
+  padding: 12px 27px;
+  margin: 8px;
+}
+.notifications {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  max-height: calc(100% - 40px);
+  width: 304px;
+  display: flex;
+  flex-direction: column-reverse;
+  user-select: none;
+}
+.notifications .alert {
+  width: 280px;
+  padding: 10px;
+  margin: 5px 0;
+  background: #79AC78;
+  border: 2px solid #B0D9B1;
+  border-radius: 7px;
+}
+.notifications .alert h3 {
+  margin-bottom: 0;
+}
+.notifications .alert.info {
+  background: #1050a6;
+  border-color: rgba(16, 80, 166, 0.2);
+}
+.notifications .alert.warning {
+  background: #c7b017;
+  border-color: rgba(199, 176, 23, 0.2);
+}
+/*# sourceMappingURL=style.css.map */

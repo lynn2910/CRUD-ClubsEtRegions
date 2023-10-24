@@ -1,0 +1,37 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    <title>Ajouter une région</title>
+{% endblock %}
+
+{% block body %}
+<main>
+    <div class="container">
+      <h2>Ajout d'une région</h2>
+  </div>
+  {% if error %}
+        <p class=error><strong>Error:</strong> {{ error }}</p>
+  {% endif %}
+  <form class="container" method="post" action="/region/add" >
+    <fieldset>
+        <legend>Enregistrer une nouvelle région</legend>
+
+        <div class="form-group">
+            <label for="name">Région</label><br>
+            <input id="name"
+                   name="name"
+                   placeholder="Saisir le nom de la région"
+                   size="32"
+                   type="text"
+                   value=""
+                   required>
+        </div>
+
+        <input name="Créer"
+               class="btn btn-success"
+               type="submit"
+               value="Créer">
+    </fieldset>
+  </form>
+</main>
+{% endblock %}

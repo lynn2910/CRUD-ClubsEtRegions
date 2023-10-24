@@ -1,0 +1,248 @@
+@background_color: #fff;
+@text_color: #000;
+@shadow: rgba(0, 0, 0, 0.15);
+@main_color: #618264;
+@second_color: #79AC78;
+@third_color: #B0D9B1;
+@midfourth_color: #c8decb;
+@fourth_color: #D0E7D2;
+
+@red: #e74444;
+@blue: #1050a6;
+@green: #10a613;
+@orange: #c7b017;
+
+@import (css) url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  background: @fourth_color;
+
+  color: @text_color;
+  font-family: 'League Spartan', sans-serif;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 50px;
+
+  background: @third_color;
+  box-shadow: 0 2px 3px @shadow;
+
+  display: flex;
+  flex-direction: row;
+
+  user-select: none;
+
+  img {
+    height: 45px;
+    width: auto;
+    margin: auto 0;
+  }
+
+  .right {
+    margin: 0 100px 0 auto;
+    height: 100%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    a {
+      text-decoration: none;
+      color: @text_color;
+      font-weight: 700;
+
+      margin: auto 10px;
+
+      &:hover {
+        color: @main_color
+      }
+    }
+  }
+}
+
+
+main {
+  padding: 65px 15px 15px 15px;
+
+  height: calc(100% - 50px - 30px);
+  width: calc(100% - 30px);
+}
+
+
+.container {
+  margin: 10px;
+  padding: 15px;
+  background-color: @third_color;
+
+  height: auto;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+
+button, .btn {
+  margin: 10px;
+  padding: 15px 20px;
+  background-color: @text_color;
+  color: @background_color;
+
+  text-decoration: none;
+
+  border-radius: 10px;
+  border: none;
+  transition: 0.15s ease-in-out;
+
+  cursor: pointer;
+  user-select: none;
+
+  &:hover {
+    padding: 17px 22px;
+    margin: 8px;
+    transition: 0.15s ease-in-out;
+  }
+}
+
+
+table {
+  margin: 25px 10px 10px 10px;
+  max-width: calc(100% - 20px);
+  border-collapse: collapse;
+}
+
+thead, tbody {
+  border: 1px solid @text_color;
+}
+
+td, th {
+  text-align: left;
+  padding: 10px 20px;
+  font-weight: 400;
+}
+
+th[scope=row] {
+  font-weight: 700;
+}
+
+
+
+th.actions {
+  height: 40px;
+  width: 100px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: right;
+
+  a {
+    margin: 0 5px;
+
+    cursor: pointer;
+
+    svg {
+      height: 20px;
+      margin: 2px;
+
+      &:hover {
+        margin: 0;
+        height: 24px;
+      }
+    }
+  }
+}
+
+
+tbody {
+  tr:nth-child(even) {
+    background: @fourth_color;
+  }
+  tr:nth-child(odd) {
+    background: @midfourth_color;
+  }
+}
+
+input[type=text] {
+  border: 2px solid @second_color;
+  border-radius: 7px;
+  margin: 5px;
+  padding: 10px 20px;
+  background: @second_color;
+  color: @text_color;
+
+  outline: none;
+
+  &:focus, &:hover {
+    border: 2px solid @main_color;
+  }
+}
+
+input[type=text]::placeholder {
+  color: rgba(@text_color, 0.5);
+}
+
+form {
+  fieldset {
+    width: 95%;
+  }
+
+  button, .btn {
+    margin: 10px;
+    padding: 10px 25px;
+
+    &:hover {
+      padding: 12px 27px;
+      margin: 8px;
+    }
+  }
+}
+
+.notifications {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+
+  max-height: calc(100% - 40px);
+  width: 304px;
+
+  display: flex;
+  flex-direction: column-reverse;
+
+  user-select: none;
+
+  .alert {
+    width: 280px;
+    padding: 10px;
+    margin: 5px 0;
+
+    background: @second_color;
+    border: 2px solid @third_color;
+    border-radius: 7px;
+
+    h3 {
+      margin-bottom: 0
+    }
+
+    &.info {
+      background: @blue;
+      border-color: rgba(@blue, 0.2);
+    }
+
+    &.warning {
+      background: @orange;
+      border-color: rgba(@orange, 0.2);
+    }
+  }
+}
