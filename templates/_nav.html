@@ -1,7 +1,22 @@
 <nav>
-    <img src="{{ url_for('static', filename='logo.png') }}" alt="logo">
+    <a href="/">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="logo">
+    </a>
     <div class="right">
-        <a href="/region/show">Regions</a>
-        <a href="/club/show">Clubs</a>
+        <div class="dropdown">
+            <a class="ctg" href="/region/show">Regions</a>
+            <div class="subdir">
+                <a class="ctg" href="/region/show">Afficher les regions</a>
+                <a class="ctg" href="/region/add">Ajouter une région</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <a href="/club/show">Clubs</a>
+            <div class="subdir">
+                <a class="ctg" href="/club/show">Afficher les clubs</a>
+                <a class="ctg" href="/club/add">Ajouter un club</a>
+            </div>
+        </div>
+        <a href="/club/filtre">Filtre des clubs</a>
     </div>
 </nav>

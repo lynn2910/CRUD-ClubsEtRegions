@@ -1,0 +1,85 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    <title>Modifier un club</title>
+{% endblock %}
+
+{% block body %}
+<main>
+    <div class="container">
+        <h2 >Modifier un club</h2>
+    </div>
+    {% if error %}
+      <p class=error><strong>Error:</strong> {{ error }}
+    {% endif %}
+    <form method="post" action="/club/edit">
+      <fieldset>
+        <legend>Modifier un club</legend>
+        <input type="hidden" name="id" value="{{ club.id }}" id="id">
+        <div>
+            <label for="nomClub">Nom</label><br>
+            <input id="nomClub"
+                   name="nomClub"
+                   placeholder="Saisir le nom du club"
+                   size="32"
+                   type="text"
+                   value="{{ club.nomClub }}"
+                   required>
+        </div>
+
+        <div>
+            <label for="nbAdherent">Adhérents</label><br>
+            <input id="nbAdherent"
+                   name="nbAdherent"
+                   placeholder="Saisir le nombre d'adhérents"
+                   min="1"
+                   type="number"
+                   value="{{ club.nbAdherent }}"
+                   required>
+        </div>
+
+        <div>
+            <label for="dateCreation">Date de création</label><br>
+            <input id="dateCreation"
+                   name="dateCreation"
+                   type="date"
+                   value="{{ club.dateCreation }}"
+                   required>
+        </div>
+
+        <div>
+            <label for="prixCotisation">Prix de la cotisation</label><br>
+            <input id="prixCotisation"
+                   name="prixCotisation"
+                   placeholder="Saisir le prix de la cotisation"
+                   min="0"
+                   type="number"
+                   value="{{ club.prixCotisation }}"
+                   required>
+        </div>
+
+        <div>
+            <label for="region_id">Région</label><br>
+            <select name="region_id" id="region_id">
+                {% for region in regions %}
+                     {% if region.id == club.region_id %}
+                        <option selected value="{{ region.id }}">{{ region.nomRegion }}</option>
+                    {% else %}
+                        <option value="{{ region.id }}">{{ region.nomRegion }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+        </div>
+
+        <div>
+            <label for="image">Logo du club</label><br>
+            <input id="image"
+                   name="image"
+                   accept="image/*"
+                   type="file">
+        </div>
+          <input class="btn" type="submit" value="Modifier" name="Modifier" >
+      </fieldset>
+    </form>
+</main>
+{% endblock %}

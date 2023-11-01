@@ -1,0 +1,85 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    <title>Ajouter un club</title>
+{% endblock %}
+
+{% block body %}
+<main>
+    <div class="container">
+      <h2>Ajout d'un club</h2>
+  </div>
+  {% if error %}
+        <p class=error><strong>Error:</strong> {{ error }}</p>
+  {% endif %}
+  <form class="container" method="post" action="/club/add" >
+    <fieldset>
+        <legend>Enregistrer un nouveau club</legend>
+
+        <div>
+            <label for="nomClub">Nom</label><br>
+            <input id="nomClub"
+                   name="nomClub"
+                   placeholder="Saisir le nom du club"
+                   size="32"
+                   type="text"
+                   value=""
+                   required>
+        </div>
+
+        <div>
+            <label for="nbAdherent">Adhérents</label><br>
+            <input id="nbAdherent"
+                   name="nbAdherent"
+                   placeholder="Saisir le nombre d'adhérents"
+                   min="1"
+                   type="number"
+                   value=""
+                   required>
+        </div>
+
+        <div>
+            <label for="dateCreation">Date de création</label><br>
+            <input id="dateCreation"
+                   name="dateCreation"
+                   type="date"
+                   required>
+        </div>
+
+        <div>
+            <label for="prixCotisation">Prix de la cotisation</label><br>
+            <input id="prixCotisation"
+                   name="prixCotisation"
+                   placeholder="Saisir le prix de la cotisation"
+                   min="0"
+                   type="number"
+                   value="0"
+                   required>
+        </div>
+
+        <div>
+            <label for="region_id">Région</label><br>
+            <select name="region_id" id="region_id">
+                <option selected value="">Sélectionner une région</option>
+                {% for region in regions %}
+                     <option value="{{ region.id }}">{{ region.nomRegion }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div>
+            <label for="image">Logo du club</label><br>
+            <input id="image"
+                   name="image"
+                   accept="image/*"
+                   type="file">
+        </div>
+
+        <input name="Créer"
+               class="btn btn-success"
+               type="submit"
+               value="Créer">
+    </fieldset>
+  </form>
+</main>
+{% endblock %}

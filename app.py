@@ -73,8 +73,8 @@ def add_region():
 @app.route('/region/add', methods=["POST"])
 def add_region_post():
     # TODO
-    name = request.form.get('name', '')
-    message = u"Region crée; { name: " + name + " }"
+    name = request.form.get('nomRegion', '')
+    message = u"Region crée; { nomRegion: " + name + " }"
     info(message)
     flash(message, 'success')
     return redirect('/region/show')
@@ -102,9 +102,10 @@ def edit_region():
 # validation (soumission) du formulaire pour modifier une region	redirection sur la route /region/show
 @app.route("/region/edit", methods=["POST"])
 def valid_edit_region():
-    name = request.form['name']
+    name = request.form['nomRegion']
     region_id = request.form.get('id', '')
-    message = u"Region supprimée; { id: " + region_id + ", nom: " + name + " }"
+
+    message = u"Region supprimée; { id: " + region_id + ", nomRegion: " + name + " }"
     info(message)
     flash(message, 'success')
     return redirect('/region/show')
@@ -113,43 +114,71 @@ def valid_edit_region():
 # affiche les clubs	retourne la vue show_club.html
 @app.route("/club/show", methods=["GET"])
 def show_club():
-    return ""
+    return render_template("club/show_club.html", clubs=clubs)
 
 
 # affiche le formulaire pour ajouter un club	retourne la vue add_club.html
 @app.route("/club/add", methods=["GET"])
 def add_club():
-    return ""
+    return render_template("club/add_club.html", regions=regions)
 
 
 # validation (soumission) du formulaire pour ajouter un club	redirection sur la route /club/show
 @app.route("/club/add", methods=["POST"])
 def valid_add_club():
-    return ""
+    name = request.form.get('nomClub', '')
+    adherents = request.form.get('nbAdherent', '')
+    date_creation = request.form.get('dateCreation', '')
+    cotisation = request.form.get('prixCotisation', '')
+    region_id = request.form.get('region_id', '')
+    logo = request.form.get('image', '')
+    message = (u'Club ajouté; { nom:' + name + ', adherents :' + adherents + ', date_creation:' + date_creation
+               + ', cotisation:' + cotisation + ', region_id:' + region_id + ', logo:' + logo)
+    flash(message, 'success')
+    return redirect('/club/show')
 
 
 # suppression d’un club	redirection sur la route /club/show
 @app.route("/club/delete", methods=["GET"])
 def delete_club():
-    return ""
+    club_id = request.args.get('id', '')
+    message = u'Article supprimé; { id : ' + club_id + ' }'
+    info(message)
+    flash(message, 'warning')
+    return redirect('/club/show')
 
 
 # affiche le formulaire pour modifier un club	retourne la vue add_club.html
 @app.route("/club/edit", methods=["GET"])
 def edit_club():
-    return ""
+    club_id = request.args.get('id', '')
+    club_id = int(club_id)
+    club = clubs[club_id-1]
+    return render_template('club/edit_club.html', club=club, regions=regions)
 
 
 # validation (soumission) du formulaire pour modifier un club	redirection sur la route /club/show
 @app.route("/club/edit", methods=["POST"])
 def valid_edit_club():
-    return ""
+    club_id = request.form.get('id', '')
+    nom_club = request.form.get('nomClub', '')
+    nb_adherent = request.form.get('nbAdherent', '')
+    date_creation = request.form.get('dateCreation', '')
+    prix_cotisation = request.form.get('prixCotisation', '')
+    region_id = request.form.get('region_id', '')
+    image = request.form.get('image', '')
+    message = (u'Club modifié; { id:' + club_id + ', ' + 'nomClub:' + nom_club + ', nb_adherent :' + nb_adherent +
+               ', dateCreation:' + date_creation + ', prixCotisation:' + prix_cotisation
+               + ', region_id:' + region_id + ', image:' + image + " }")
+    flash(message, 'success')
+    return redirect('/club/show')
 
 
-# validation (soumission) du formulaire pour modifier un club	redirection sur la route /club/show
+# affichage du formulaire du filtre et des éléments d’une des tables python sous forme de ‘cards’
+# retourne la vue show_club.html
 @app.route("/club/filtre", methods=["GET"])
 def filtre_club():
-    return ""
+    return render_template('club/front_club_filtre_show.html', clubs=clubs, regions=regions)
 
 
 if __name__ == '__main__':

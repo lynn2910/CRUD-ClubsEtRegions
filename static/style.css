@@ -1,15 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap');
+* {
+  max-width: 100%;
+}
 body {
   margin: 0;
   padding: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   background: #D0E7D2;
+  box-sizing: border-box;
+  overflow-y: scroll;
   color: #000;
   font-family: 'League Spartan', sans-serif;
 }
+::-webkit-scrollbar {
+  width: 8px;
+  background: #B0D9B1;
+}
+::-webkit-scrollbar-thumb {
+  background: #618264;
+  border-radius: calc(8px / 3);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #79AC78;
+}
 nav {
   position: fixed;
+  z-index: 1000;
   top: 0;
   left: 0;
   width: 100vw;
@@ -26,7 +43,7 @@ nav img {
   margin: auto 0;
 }
 nav .right {
-  margin: 0 100px 0 auto;
+  margin: 0 auto;
   height: 100%;
   display: flex;
   flex-direction: row;
@@ -41,8 +58,33 @@ nav .right a {
 nav .right a:hover {
   color: #618264;
 }
+nav .right .dropdown {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+nav .right .dropdown .subdir {
+  display: none;
+}
+nav .right .dropdown:hover .subdir {
+  position: absolute;
+  padding: 15px;
+  margin: 10px 0 0 0;
+  transform: translate(-25%, 50px);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #D0E7D2;
+  border-radius: 7px;
+  background: #B0D9B1;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
+}
+nav .right .dropdown:hover .subdir a {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
 main {
-  padding: 65px 15px 15px 15px;
+  padding: calc(50px + 15px) 15px 15px 15px;
   height: calc(100% - 50px - 30px);
   width: calc(100% - 30px);
 }
@@ -75,19 +117,24 @@ button:hover,
   transition: 0.15s ease-in-out;
 }
 table {
-  margin: 25px 10px 10px 10px;
-  max-width: calc(100% - 20px);
+  margin: 25px auto 10px auto;
+  width: 90%;
   border-collapse: collapse;
 }
-thead,
-tbody {
+table thead,
+table tbody {
   border: 1px solid #000;
 }
-td,
-th {
+table td,
+table th {
   text-align: left;
-  padding: 10px 20px;
+  padding: 0 20px;
   font-weight: 400;
+  height: 40px;
+}
+table td img,
+table th img {
+  max-height: 40px;
 }
 th[scope=row] {
   font-weight: 700;
@@ -118,7 +165,8 @@ tbody tr:nth-child(even) {
 tbody tr:nth-child(odd) {
   background: #c8decb;
 }
-input[type=text] {
+input,
+select {
   border: 2px solid #79AC78;
   border-radius: 7px;
   margin: 5px;
@@ -127,15 +175,24 @@ input[type=text] {
   color: #000;
   outline: none;
 }
-input[type=text]:focus,
-input[type=text]:hover {
+input:focus,
+select:focus,
+input:hover,
+select:hover {
   border: 2px solid #618264;
 }
-input[type=text]::placeholder {
+input::placeholder {
   color: rgba(0, 0, 0, 0.5);
+}
+form {
+  width: 100%;
+  user-select: none;
 }
 form fieldset {
   width: 95%;
+  border: 1px dashed #000;
+  border-radius: 7px;
+  margin: 10px 0;
 }
 form button,
 form .btn {
@@ -147,8 +204,58 @@ form .btn:hover {
   padding: 12px 27px;
   margin: 8px;
 }
+form .left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+form .left p {
+  margin: 2px 0;
+}
+form .left input {
+  margin: 5px 0;
+}
+form .height-500 {
+  height: 200px;
+}
+form .row {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+form .row .centered {
+  align-items: center;
+}
+form .row .centered label {
+  margin-right: 10px;
+  margin-left: 5px;
+}
+form .row .mid {
+  width: calc(50% - (0.25em * 2));
+  margin-right: 0.25em;
+  margin-left: 0.25em;
+}
+form .row .mid_height {
+  height: 40%;
+}
+form .row .height_30 {
+  height: 30px;
+}
+form .row .full_width {
+  width: 100%;
+}
+form .row .full-height {
+  height: 100%;
+  align-self: stretch;
+}
+form .allow-y-scroll {
+  overflow-y: scroll;
+}
+form .width-125 {
+  width: 125px;
+}
 .notifications {
-  position: absolute;
+  position: fixed;
   bottom: 20px;
   right: 20px;
   max-height: calc(100% - 40px);
@@ -175,5 +282,86 @@ form .btn:hover {
 .notifications .alert.warning {
   background: #c7b017;
   border-color: rgba(199, 176, 23, 0.2);
+}
+#filters_grid {
+  height: 300px;
+}
+#filters_grid h2 {
+  margin: 10px 5px;
+}
+#filters_grid input[type=number] {
+  width: 40px;
+}
+details {
+  padding: 10px 0;
+}
+details summary {
+  list-style: none;
+  user-select: none;
+  font-weight: 600;
+  padding: 10px 0;
+}
+details summary::-webkit-details-marker {
+  display: none;
+}
+details summary::before {
+  content: "+";
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  position: absolute;
+  right: 5%;
+}
+details[open] summary::before {
+  content: "-";
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+.docker {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 200px);
+  grid-gap: 10px;
+}
+.docker .card {
+  height: 325px;
+  width: 200px;
+  border-radius: 7px;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #B0D9B1;
+  transition: 0.1s ease-in-out;
+}
+.docker .card h3 {
+  margin: 15px 5px;
+}
+.docker .card img {
+  height: 200px;
+  width: auto;
+  max-width: 200px;
+  margin: auto;
+}
+.docker .card .infos {
+  margin: auto 5px 10px 5px;
+}
+.docker .card .infos p {
+  margin: 3px 0;
+}
+.docker .card:hover {
+  background-color: #B0D9B1;
+  border-color: #D0E7D2;
+  transition: 0.1s ease-in-out;
+}
+@media (min-width: 1000px) {
+  .docker,
+  .container.for_docker {
+    width: 830px;
+    margin: 0 auto;
+  }
+  .container.for_docker {
+    background: transparent;
+  }
 }
 /*# sourceMappingURL=style.css.map */
