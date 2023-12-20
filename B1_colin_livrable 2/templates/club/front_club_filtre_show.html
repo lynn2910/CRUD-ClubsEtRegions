@@ -14,7 +14,8 @@
                 <input type="text"
                        name="nom"
                        placeholder="Recherche"
-                       id="nom">
+                       id="nom"
+                       value="{{ args.nom }}">
             </div>
 
             <div class="row" id="filters_grid">
@@ -23,12 +24,21 @@
                     {% if regions | length >= 1 %}
                         {% for region in regions %}
                             <div class="row centered height_30">
-                                <label class="width-125" for="region_{{ region.id }}">{{ region.nomRegion }}</label>
-                                <input type="checkbox"
-                                   id="region_{{ region.id }}"
-                                   name="region_{{ region.id }}"
-                                   value="{{ region.id }}">
-                            </div>
+                                {% if region.id|string in selected_regions %}
+                                    <label class="width-125" for="region_{{ region.id }}_1">{{ region.nomRegion }}</label>
+                                    <input type="checkbox"
+                                        id="region_{{ region.id }}_1"
+                                        name="region"
+                                        value="{{ region.id }}"
+                                        checked>
+                                {% else %}
+                                    <label class="width-125" for="region_{{ region.id }}_2">{{ region.nomRegion }}</label>
+                                    <input type="checkbox"
+                                        id="region_{{ region.id }}_2"
+                                        name="region"
+                                        value="{{ region.id }}">
+                                    {% endif %}
+                                </div>
                         {% endfor %}
                     {% else %}
                         <p>Aucune région n'existe</p>
@@ -39,18 +49,27 @@
                         <h2>Nombre d'adhérents</h2>
                         <div class="row centered">
                             <label for="min_adherents">Minimum:</label>
-                            <input type="number" id="min_adherents" name="min_adherents" value="0"><br>
+                            <input value="{{ args.min_adherents }}" type="number" id="min_adherents" name="min_adherents" placeholder="minimum"><br>
                             <label for="max_adherents">Maximum:</label>
-                            <input type="number" id="max_adherents" name="max_adherents" value="100">
+                            <input value="{{ args.max_adherents }}" type="number" id="max_adherents" name="max_adherents" placeholder="maximum">
                         </div>
                     </fieldset>
                     <fieldset class="left mid_height">
                         <h2>Prix de la cotisation</h2>
                         <div class="row centered">
                             <label for="min_cotisation">Minimum:</label>
-                            <input type="number" id="min_cotisation" name="min_cotisation" value="0"><br>
+                            <input value="{{ args.min_cotisation }}"
+                                   type="number"
+                                   id="min_cotisation"
+                                   name="min_cotisation"
+                                   placeholder="minimum">
+                            <br>
                             <label for="max_cotisation">Maximum:</label>
-                            <input type="number" id="max_cotisation" name="max_cotisation" value="100">
+                            <input value="{{ args.max_cotisation }}"
+                                   type="number"
+                                   id="max_cotisation"
+                                   name="max_cotisation"
+                                   placeholder="maximum">
                         </div>
                     </fieldset>
                 </div>

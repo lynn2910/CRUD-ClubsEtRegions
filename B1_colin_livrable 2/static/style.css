@@ -7,7 +7,7 @@ body {
   padding: 0;
   width: 100vw;
   height: 100%;
-  background: #D0E7D2;
+  background: #f6f6f6;
   box-sizing: border-box;
   overflow-y: scroll;
   color: #000;
@@ -15,14 +15,14 @@ body {
 }
 ::-webkit-scrollbar {
   width: 8px;
-  background: #B0D9B1;
+  background: #ccc;
 }
 ::-webkit-scrollbar-thumb {
-  background: #618264;
+  background: #2A7AC1;
   border-radius: calc(8px / 3);
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #79AC78;
+  background: #d5d5d5;
 }
 nav {
   position: fixed;
@@ -31,7 +31,7 @@ nav {
   left: 0;
   width: 100vw;
   height: 50px;
-  background: #B0D9B1;
+  background: #f6f6f6;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: row;
@@ -53,10 +53,11 @@ nav .right a {
   text-decoration: none;
   color: #000;
   font-weight: 700;
-  margin: auto 10px;
+  margin: auto 0;
+  padding: 5px 30px;
 }
 nav .right a:hover {
-  color: #618264;
+  color: #2A7AC1;
 }
 nav .right .dropdown {
   height: 100%;
@@ -74,14 +75,14 @@ nav .right .dropdown:hover .subdir {
   transform: translate(-25%, 50px);
   display: flex;
   flex-direction: column;
-  border: 1px solid #D0E7D2;
+  border: 1px solid #000;
   border-radius: 7px;
-  background: #B0D9B1;
+  background: #ccc;
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
 }
 nav .right .dropdown:hover .subdir a {
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin: 5px 10px;
+  padding: 0;
 }
 main {
   padding: calc(50px + 15px) 15px 15px 15px;
@@ -91,7 +92,10 @@ main {
 .container {
   margin: 10px;
   padding: 15px;
-  background-color: #B0D9B1;
+  max-width: calc(100% - 50px);
+  background-color: #ebebeb;
+  border-radius: 7px;
+  border: 2px solid #000;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -110,6 +114,14 @@ button,
   cursor: pointer;
   user-select: none;
 }
+button.cancel,
+.btn.cancel {
+  background: #555555;
+}
+button.red,
+.btn.red {
+  background: #c12121;
+}
 button:hover,
 .btn:hover {
   padding: 17px 22px;
@@ -118,7 +130,7 @@ button:hover,
 }
 table {
   margin: 25px auto 10px auto;
-  width: 90%;
+  width: 98.4%;
   border-collapse: collapse;
 }
 table thead,
@@ -160,26 +172,30 @@ th.actions a svg:hover {
   height: 24px;
 }
 tbody tr:nth-child(even) {
-  background: #D0E7D2;
+  background: #ebebeb;
 }
 tbody tr:nth-child(odd) {
-  background: #c8decb;
+  background: #f6f6f6;
 }
 input,
 select {
-  border: 2px solid #79AC78;
+  border: 2px solid #d5d5d5;
   border-radius: 7px;
   margin: 5px;
   padding: 10px 20px;
-  background: #79AC78;
+  background: #d5d5d5;
   color: #000;
   outline: none;
+}
+input[type="number"],
+select[type="number"] {
+  min-width: 100px;
 }
 input:focus,
 select:focus,
 input:hover,
 select:hover {
-  border: 2px solid #618264;
+  border: 2px solid #2A7AC1;
 }
 input::placeholder {
   color: rgba(0, 0, 0, 0.5);
@@ -254,34 +270,27 @@ form .allow-y-scroll {
 form .width-125 {
   width: 125px;
 }
-.notifications {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  max-height: calc(100% - 40px);
-  width: 304px;
+form .delete_cascade li {
   display: flex;
-  flex-direction: column-reverse;
-  user-select: none;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1px solid #000;
+  width: fit-content;
 }
-.notifications .alert {
-  width: 280px;
-  padding: 10px;
-  margin: 5px 0;
-  background: #79AC78;
-  border: 2px solid #B0D9B1;
-  border-radius: 7px;
+form .delete_cascade li p {
+  width: 300px;
 }
-.notifications .alert h3 {
-  margin-bottom: 0;
+form .delete_cascade li a {
+  margin: 0 5px;
+  cursor: pointer;
 }
-.notifications .alert.info {
-  background: #1050a6;
-  border-color: rgba(16, 80, 166, 0.2);
+form .delete_cascade li a svg {
+  height: 30px;
+  margin: 2px;
 }
-.notifications .alert.warning {
-  background: #c7b017;
-  border-color: rgba(199, 176, 23, 0.2);
+form .delete_cascade li a svg:hover {
+  margin: 0;
+  height: 34px;
 }
 #filters_grid {
   height: 300px;
@@ -300,12 +309,14 @@ details summary {
   user-select: none;
   font-weight: 600;
   padding: 10px 0;
+  cursor: pointer;
 }
 details summary::-webkit-details-marker {
   display: none;
 }
 details summary::before {
   content: "+";
+  font-size: 1.2em;
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
@@ -319,10 +330,12 @@ details[open] summary::before {
   align-items: center;
 }
 .docker {
+  margin: 0 auto;
   width: 100%;
+  max-width: 1300px;
   display: grid;
   grid-template-columns: repeat(auto-fill, 200px);
-  grid-gap: 10px;
+  grid-gap: 15px;
 }
 .docker .card {
   height: 325px;
@@ -331,7 +344,7 @@ details[open] summary::before {
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
   display: flex;
   flex-direction: column;
-  border: 1px solid #B0D9B1;
+  border: 1px solid #ccc;
   transition: 0.1s ease-in-out;
 }
 .docker .card h3 {
@@ -350,14 +363,84 @@ details[open] summary::before {
   margin: 3px 0;
 }
 .docker .card:hover {
-  background-color: #B0D9B1;
-  border-color: #D0E7D2;
+  background-color: #ccc;
+  border-color: #000;
   transition: 0.1s ease-in-out;
+}
+.notifications {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column-reverse;
+}
+@keyframes over_notif_close {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}
+.notifications .notif {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 5px 10px;
+  margin: 5px 10px 5px 0;
+  width: 250px;
+  border: 4px solid #000;
+  background: #fdfdfd;
+  border-radius: 7px;
+}
+.notifications .notif .header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+}
+.notifications .notif .header h4 {
+  margin: 0;
+  text-transform: uppercase;
+}
+.notifications .notif .header svg {
+  height: 50%;
+  width: auto;
+  margin-left: auto;
+}
+.notifications .notif .header svg:hover {
+  animation: over_notif_close 0.5s ease-in-out;
+  transform: scale(1.2);
+}
+.notifications .notif .message {
+  margin: 15px auto 10px 0;
+}
+.notifications .notif.info {
+  border: 4px solid #2166c1;
+  background: #c6d4eb;
+}
+.notifications .notif.error {
+  border: 4px solid #c12121;
+  background: #ebc6c6;
+}
+.notifications .notif.success {
+  border: 4px solid #28a14f;
+  background: #c6ebd3;
+}
+.notifications .notif.warn,
+.notifications .notif.warning {
+  border: 4px solid #dd9024;
+  background: #ebddc6;
 }
 @media (min-width: 1000px) {
   .docker,
   .container.for_docker {
-    width: 830px;
+    width: 96.4%;
     margin: 0 auto;
   }
   .container.for_docker {
